@@ -16,14 +16,20 @@ class _DashboadState extends State<Dashboad> {
         title: Text('Welcome to Flutter Pokedex!'),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Card(
-              child: Container(
-            child: TextField(
-              decoration: InputDecoration(labelText: 'Search Pokemon: '),
+            child: SizedBox(
+              width: double.infinity,
+              child: FlatButton.icon(
+                label: Text('Search'),
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/search');
+                },
+              ),
             ),
-          )),
+          ),
           Card(
             child: Container(
               padding: EdgeInsets.all(10),
