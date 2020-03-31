@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/fav_pokemon.dart';
 
 class Dashboad extends StatefulWidget {
   Dashboad({Key key}) : super(key: key);
@@ -14,8 +15,22 @@ class _DashboadState extends State<Dashboad> {
       appBar: AppBar(
         title: Text('Welcome to Flutter Pokedex!'),
       ),
-      body: Container(
-        child: Text('DASHBOARD'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          Card(
+              child: Container(
+            child: TextField(
+              decoration: InputDecoration(labelText: 'Search Pokemon: '),
+            ),
+          )),
+          Card(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: FavPokemon(),
+            ),
+          ),
+        ],
       ),
     );
   }
