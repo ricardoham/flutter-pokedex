@@ -1,13 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class SearchContainer extends StatefulWidget {
-  @override
-  _SearchContainerState createState() => _SearchContainerState();
-}
+class SearchContainer  {
+  List pokemons = [];
 
-class _SearchContainerState extends State<SearchContainer> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
+  Future<void> fetchPokemons() async {
+    var url = 'https://pokeapi.co/api/v2/pokemon';
+
+    try {
+      final response = await http.get(url);
+      if(response.statusCode == 200) {
+        return;
+      }
+    } catch(error) {
+      throw (error)
+    }
   }
+
 }
