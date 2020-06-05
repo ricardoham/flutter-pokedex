@@ -3,26 +3,41 @@ import 'package:provider/provider.dart';
 import '../widgets/fav_pokemon.dart';
 import '../providers/pokemons.dart';
 
-class Dashboad extends StatefulWidget {
-  Dashboad({Key key}) : super(key: key);
+class Dashboard extends StatefulWidget {
   @override
-  _DashboadState createState() => _DashboadState();
+  _DashboardState createState() => _DashboardState();
 }
 
-class _DashboadState extends State<Dashboad> {
+class _DashboardState extends State<Dashboard> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+  var _isInit = true;
+  var _isLoading = false;
+
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+    Provider.of<Pokemons>(context).getPokemons().then((_) {
+      _isLoading = false;
+    });
+    _isInit = false;
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final pokemons = Provider.of<Pokemon>(context).fetchPokemons();
+    // final pokemons = Provider.of<Pokemons>(context);
 
-    void searchAPI() async {
-      await pokemons;
-      print(pokemons);
-    }
+    // void searchAPI() async {
+    //   await pokemons;
+    //   print(pokemons);
+    // }
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +53,6 @@ class _DashboadState extends State<Dashboad> {
                 label: Text('Search'),
                 icon: Icon(Icons.search),
                 onPressed: () {
-                  searchAPI();
                   // Navigator.pushNamed(context, '/search');
                 },
               ),
