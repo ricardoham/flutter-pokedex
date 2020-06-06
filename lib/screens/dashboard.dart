@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../widgets/search.dart';
 import '../widgets/fav_pokemon.dart';
 import '../providers/pokemons.dart';
 
@@ -9,26 +10,30 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-  var _isInit = true;
-  var _isLoading = false;
-
   @override
-  void didChangeDependencies() {
-    if (_isInit) {
-      setState(() {
-        _isLoading = true;
-      });
-    }
-    Provider.of<Pokemons>(context).getPokemons().then((_) {
-      _isLoading = false;
+  void initState() {
+    Future.delayed(Duration(seconds: 2)).then((_) {
+      final test = Provider.of<Pokemons>(context, listen: false).getPokemons();
     });
-    _isInit = false;
-    super.didChangeDependencies();
+    super.initState();
   }
+
+  // var _isInit = true;
+  // var _isLoading = false;
+
+  // @override
+  // void didChangeDependencies() {
+  //   if (_isInit) {
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
+  //   }
+  //   Provider.of<Pokemons>(context).getPokemons().then((_) {
+  //     _isLoading = false;
+  //   });
+  //   _isInit = false;
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +51,7 @@ class _DashboardState extends State<Dashboard> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Card(
-            child: SizedBox(
-              width: double.infinity,
-              child: FlatButton.icon(
-                label: Text('Search'),
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  // Navigator.pushNamed(context, '/search');
-                },
-              ),
-            ),
-          ),
+          Search(),
           Card(
             child: Container(
               padding: EdgeInsets.all(10),

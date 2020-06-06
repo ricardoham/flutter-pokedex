@@ -15,7 +15,7 @@ class Pokemons with ChangeNotifier {
       // print(extractedData['results']);
       if (extractedData['results'] != null) {
         extractedData['results'].forEach((poke) {
-          // print(poke);
+          print(poke['name']);
           loadedPokemons.add(
             Pokemon(name: poke['name'], url: poke['url']),
           );
