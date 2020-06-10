@@ -12,32 +12,25 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: SizedBox(
-          width: double.infinity,
-          child: Row(
-            children: <Widget>[
-              GestureDetector(
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.search),
-                    Container(
-                      width: 100,
-                      child: TextField(
-                        controller: _searchController,
-                        onChanged: onSearch,
-                      ),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  print('tapped');
-                },
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Icon(Icons.search),
+            Container(
+              width: 200,
+              child: TextField(
+                controller: _searchController,
+                onChanged: onSearch,
               ),
-              IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () {},
-              )
-            ],
-          )),
+            ),
+            IconButton(
+              icon: Icon(Icons.clear),
+              onPressed: () {},
+            )
+          ],
+        ),
+      ),
     );
   }
 }
