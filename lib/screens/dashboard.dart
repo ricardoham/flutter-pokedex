@@ -10,39 +10,19 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  @override
-  void initState() {
-    Future.delayed(Duration(seconds: 2)).then((_) {
-      final test = Provider.of<Pokemons>(context, listen: false).getPokemons();
-    });
-    super.initState();
-  }
-
-  // var _isInit = true;
-  // var _isLoading = false;
-
-  // @override
-  // void didChangeDependencies() {
-  //   if (_isInit) {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
-  //   }
-  //   Provider.of<Pokemons>(context).getPokemons().then((_) {
-  //     _isLoading = false;
-  //   });
-  //   _isInit = false;
-  //   super.didChangeDependencies();
-  // }
+  var _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    // final pokemons = Provider.of<Pokemons>(context);
+    final pokemons = Provider.of<Pokemons>(context);
+    var textQuery = '';
 
-    // void searchAPI() async {
-    //   await pokemons;
-    //   print(pokemons);
-    // }
+    void handleSearch(String query) async {
+      setState(() {
+        textQuery = query;
+      });
+      print(textQuery);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +31,13 @@ class _DashboardState extends State<Dashboard> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Search(),
+          Search(handleSearch),
+          FlatButton(
+            child: Text('Buscar'),
+            onPressed: () {
+              pokemons.getPokemons(textQuery);
+            },
+          ),
           Card(
             child: Container(
               padding: EdgeInsets.all(10),

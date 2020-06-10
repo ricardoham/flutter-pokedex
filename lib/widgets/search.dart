@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
+  final Function onSearch;
+  final _searchController = TextEditingController();
+
+  Search(this.onSearch);
+
   void handleOnSearch() {}
 
   @override
@@ -14,7 +19,10 @@ class Search extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Icon(Icons.search),
-                    Text('Search'),
+                    TextField(
+                      controller: _searchController,
+                      onChanged: onSearch,
+                    ),
                   ],
                 ),
                 onTap: () {

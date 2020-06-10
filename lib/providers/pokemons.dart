@@ -7,22 +7,26 @@ import '../constants/constants.dart' as Constants;
 
 class Pokemons with ChangeNotifier {
   List<Pokemon> _result = [];
-  Future<void> getPokemons() async {
+  Future<void> getPokemons(String query) async {
+    print('QUERY ' + query);
     try {
-      final response = await http.get(Constants.URL);
+      final response =
+          await http.get('https://pokeapi.co/api/v2/pokemon/$query');
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Pokemon> loadedPokemons = [];
-      // print(extractedData['results']);
-      if (extractedData['results'] != null) {
-        extractedData['results'].forEach((poke) {
-          print(poke['name']);
-          loadedPokemons.add(
-            Pokemon(name: poke['name'], url: poke['url']),
-          );
-        });
+      print(extractedData);
+      if (response != null) {
+        // extractedData['name'].forEach((poke) {
+        //   print('OKE' + poke['name']);
+        //   loadedPokemons.add(
+        //     Pokemon(name: poke['name'], url: poke['url']),
+        //   );
+        // });
+
+        // print('aaaaa' + extractedData['name']);
       }
-      _result = loadedPokemons;
-      print(_result);
+      // _result = loadedPokemons;
+      // print(_result);
 
       notifyListeners();
     } catch (error) {
