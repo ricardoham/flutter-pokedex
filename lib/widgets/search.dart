@@ -19,9 +19,12 @@ class Search extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Icon(Icons.search),
-                    TextField(
-                      controller: _searchController,
-                      onChanged: onSearch,
+                    Container(
+                      width: 100,
+                      child: TextField(
+                        controller: _searchController,
+                        onChanged: onSearch,
+                      ),
                     ),
                   ],
                 ),
