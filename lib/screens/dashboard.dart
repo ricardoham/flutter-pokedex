@@ -11,19 +11,21 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   var _isLoading = false;
+  var _textQuery = '';
 
   @override
   Widget build(BuildContext context) {
     final pokemons = Provider.of<Pokemons>(context);
-    var textQuery = '';
 
-    void handleSearch(String query) async {
+    void handleSearch(String query) {
+      // print('Query ' + query);
       setState(() {
-        textQuery = query;
+        _textQuery = query;
       });
-      print(textQuery);
     }
 
+    // print('aaaTEXT $_textQuery');
+    print(pokemons.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Flutter Pokedex!'),
@@ -35,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
           FlatButton(
             child: Text('Buscar'),
             onPressed: () {
-              pokemons.getPokemons(textQuery);
+              pokemons.getPokemons(_textQuery);
             },
           ),
           Card(

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Search extends StatelessWidget {
+class Search extends StatefulWidget {
   final Function onSearch;
-  final _searchController = TextEditingController();
 
   Search(this.onSearch);
+
+  @override
+  _SearchState createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  final _searchController = TextEditingController();
 
   void handleOnSearch() {}
 
@@ -21,12 +27,15 @@ class Search extends StatelessWidget {
               width: 200,
               child: TextField(
                 controller: _searchController,
-                onChanged: onSearch,
+                onChanged: (text) {
+                  print('Text: $text');
+                  widget.onSearch(text);
+                },
               ),
             ),
             IconButton(
               icon: Icon(Icons.clear),
-              onPressed: () {},
+              onPressed: () => _searchController.clear(),
             )
           ],
         ),

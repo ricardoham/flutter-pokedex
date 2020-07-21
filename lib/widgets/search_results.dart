@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/pokemons.dart';
 
 class SearchResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(child: null
-        // TODO Pokemon holder widget
-        );
+    final pokemon = Provider.of<Pokemons>(context);
+    return Column(
+      children: <Widget>[
+        Text('Pokemon name: '),
+      ],
+    );
   }
 }
