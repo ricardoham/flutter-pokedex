@@ -8,7 +8,7 @@ class SearchResults extends StatelessWidget {
     final pokemon = Provider.of<Pokemons>(context);
     return Column(
       children: <Widget>[
-        Text('Pokemon name: '),
+        Text(pokemon.poke.name),
       ],
     );
   }

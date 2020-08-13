@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/widgets/search_results.dart';
 import 'package:provider/provider.dart';
 import '../widgets/search.dart';
 import '../widgets/fav_pokemon.dart';
@@ -25,7 +26,7 @@ class _DashboardState extends State<Dashboard> {
     }
 
     // print('aaaTEXT $_textQuery');
-    print(pokemons.toString());
+    // print(pokemons.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Flutter Pokedex!'),
@@ -46,6 +47,7 @@ class _DashboardState extends State<Dashboard> {
               child: FavPokemon(),
             ),
           ),
+          SearchResults()
         ],
       ),
     );

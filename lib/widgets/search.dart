@@ -28,7 +28,6 @@ class _SearchState extends State<Search> {
               child: TextField(
                 controller: _searchController,
                 onChanged: (text) {
-                  print('Text: $text');
                   widget.onSearch(text);
                 },
               ),
