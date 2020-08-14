@@ -11,22 +11,31 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  var _isLoading = false;
+  bool _isLoading;
   var _textQuery = '';
+  setLoading(bool state) => setState(() => _isLoading = state);
+
+  Future<void> handleSearchPokemon() async {
+    try {
+      print(_textQuery);
+      setLoading(true);
+      await Provider.of<Pokemons>(context, listen: false)
+          .getPokemons(_textQuery);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final pokemons = Provider.of<Pokemons>(context);
-
     void handleSearch(String query) {
-      // print('Query ' + query);
       setState(() {
         _textQuery = query;
       });
     }
 
-    // print('aaaTEXT $_textQuery');
-    // print(pokemons.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Flutter Pokedex!'),
@@ -37,9 +46,7 @@ class _DashboardState extends State<Dashboard> {
           Search(handleSearch),
           FlatButton(
             child: Text('Buscar'),
-            onPressed: () {
-              pokemons.getPokemons(_textQuery);
-            },
+            onPressed: handleSearchPokemon,
           ),
           Card(
             child: Container(
@@ -47,7 +54,9 @@ class _DashboardState extends State<Dashboard> {
               child: FavPokemon(),
             ),
           ),
-          SearchResults()
+          _isLoading == null
+              ? Text('Not Searched yet')
+              : _isLoading ? Text('Loading') : SearchResults()
         ],
       ),
     );

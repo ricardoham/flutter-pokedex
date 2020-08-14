@@ -12,7 +12,6 @@ class Pokemons with ChangeNotifier {
   }
 
   Future<void> getPokemons(String query) async {
-    print('QUERY ' + query);
     try {
       final response =
           await http.get('https://pokeapi.co/api/v2/pokemon/$query');
