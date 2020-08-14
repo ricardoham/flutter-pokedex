@@ -6,9 +6,11 @@ class SearchResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pokemon = Provider.of<Pokemons>(context, listen: false).poke;
+    print(pokemon.sprites);
     return Column(
       children: <Widget>[
         Text(pokemon.name),
+        Image.network(pokemon.sprites),
       ],
     );
   }

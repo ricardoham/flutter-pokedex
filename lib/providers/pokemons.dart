@@ -20,7 +20,7 @@ class Pokemons with ChangeNotifier {
       if (response != null) {
         Pokemon loadedPokemons = Pokemon(
           name: extractedData['name'],
-          sprites: extractedData['sprites'],
+          sprites: extractedData['sprites']['front_default'],
         );
         _result = loadedPokemons;
       }

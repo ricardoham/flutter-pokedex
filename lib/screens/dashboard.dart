@@ -20,7 +20,7 @@ class _DashboardState extends State<Dashboard> {
       print(_textQuery);
       setLoading(true);
       await Provider.of<Pokemons>(context, listen: false)
-          .getPokemons(_textQuery);
+          .getPokemons(_textQuery.toLowerCase());
       setLoading(false);
     } catch (error) {
       setLoading(false);
